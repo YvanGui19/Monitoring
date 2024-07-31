@@ -45,19 +45,17 @@
         <Rectangle HorizontalAlignment="Center" Height="294" Margin="0,207,0,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#00000000" RenderTransformOrigin="0.5,0.5"/>
         <Label Name="ram" Content="RAM" HorizontalAlignment="Center" Margin="0,207,0,0" VerticalAlignment="Top" Width="250" FontSize="25" FontWeight="Bold" Foreground="#FF37474F"/>
         <Label Content="Utilisation de la mémoire :" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
+        <ProgressBar Name="barRam" HorizontalAlignment="Center" Height="25" VerticalAlignment="Top" Width="238" Background="#FFCFD8DD" BorderBrush="#FF78909C" Foreground="#FF37474F" Value="50" FontSize="25" Margin="0,272,0,0"/>
 
-        <Label Name="ramTotal" Content="Total : 15,90 GB" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,304,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
-        <Label Name="ramUsed" Content="Utilisé : 9,90 GB" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
-        <Label Name="ramFree" Content="Libre : 2,90 GB" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,364,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
+        <Label Name="ramTotal" Content="Total : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,304,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
+        <Label Name="ramUsed" Content="Utilisé : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
+        <Label Name="ramFree" Content="Libre : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,364,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
 
         <Label Content="TEMPÉRATURE" HorizontalAlignment="Center" Margin="0,399,0,0" VerticalAlignment="Top" Width="250" FontSize="25" FontWeight="Bold" Foreground="#FF37474F"/>
-        <Label Name="temp" Content="85°C" HorizontalAlignment="Center" Margin="0,438,0,0" VerticalAlignment="Top" Width="250" FontSize="35" FontWeight="Bold" Foreground="#FF37474F" HorizontalContentAlignment="Center"/>
-
+        <Label Name="temp" Content="0°C" HorizontalAlignment="Center" Margin="0,438,0,0" VerticalAlignment="Top" Width="250" FontSize="35" FontWeight="Bold" Foreground="#FF37474F" HorizontalContentAlignment="Center"/>
 
         <!-- Module Disques -->
         <Rectangle HorizontalAlignment="Right" Height="294" Margin="0,207,13,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#00000000" RenderTransformOrigin="0.5,0.5"/>
-        <ProgressBar HorizontalAlignment="Center" Height="25" VerticalAlignment="Top" Width="238" Background="#FFCFD8DD" BorderBrush="#FF78909C" Foreground="#FF37474F" Value="50" FontSize="25" Margin="0,272,0,0"/>
-
         <Label Content="DISQUES" HorizontalAlignment="Right" Margin="0,207,13,0" VerticalAlignment="Top" Width="250" FontSize="25" FontWeight="Bold" Foreground="#FF37474F"/>
         <ListBox Name="listeDisques" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,244,20,214" BorderBrush="#FF78909C" Background="#FFCFD8DD" HorizontalAlignment="Right" Width="236"/>
 

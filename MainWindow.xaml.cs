@@ -39,19 +39,66 @@ namespace Monitoring
         //Fonction timer
         void timer_Tick(object sender, EventArgs e)
         {
-            //Màj infos CPU
+            //MÀJ infos CPU
             cpu.Content = RefreshCpuInfos();
-            //Màj infos RAM
+            //MÀJ infos RAM
             RefreshRamInfos();
+            //MÀJ infos Température
+            RefreshTempInfos();
         }
 
+
+        //Actualisation des données de la température
+        public void RefreshTempInfos()
+        {
+            Double temperature = 0;
+            String instanceName = "";
+
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(@"root\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                instanceName = obj["InstanceName"].ToString();
+                if (instanceName.Contains("CPUZ_0"))
+                {
+                    temperature = Convert.ToDouble(obj["CurrentTemperature"].ToString());
+                    // Conversion °F en °C
+                    temperature = (temperature - 2732) / 10.0;
+                }
+            }
+            temp.Content = temperature + "°C";
+        }
+
+
+        /*public void RefreshTempInfos()
+        {
+            Double temperature = 0;
+            String instanceName = "";
+
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(@"root\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                temperature = Convert.ToDouble(obj["CurrentTemperature"].ToString());
+                //Convertion °F en °C
+                temperature = (temperature - 2732) / 10.0;
+                instanceName = obj["InstanceName"].ToString();
+            }
+            temp.Content = temperature + "°C";
+        }*/
+
+        //Actualisation des données de la RAM
         public void RefreshRamInfos()
         {
             ramTotal.Content = "Total : " + FormatSize(GetTotalPhys());
             ramUsed.Content = "Utilisé : " + FormatSize(GetUsedPhys());
             ramFree.Content = "Disponible : " + FormatSize(GetAvailPhys());
+
+            string[] maxVal = FormatSize(GetTotalPhys()).Split(' ');
+            barRam.Maximum = float.Parse(maxVal[0]);
+            string[] memVal = FormatSize(GetUsedPhys()).Split(' ');
+            barRam.Value = float.Parse(memVal[0]); ;
         }
 
+        //Actualisation des données du CPU
         public string RefreshCpuInfos()
         {
             PerformanceCounter cpuCounter = new PerformanceCounter();
@@ -61,7 +108,7 @@ namespace Monitoring
 
             dynamic firstVal = cpuCounter.NextValue(); //valeur toujours à 0
             System.Threading.Thread.Sleep(50);
-            dynamic val = cpuCounter.NextValue(); // valeur réelle
+            dynamic val = cpuCounter.NextValue(); //valeur réelle
 
             //Rotation de l'aiguille
             RotateTransform rotateTransform = new RotateTransform((val * 2.7f) -90);
@@ -74,24 +121,24 @@ namespace Monitoring
 
         }
 
-        // Travailler avec la mémoire (RAM)
+        //Travailler avec la mémoire (RAM)
         #region Fonctions spécifiques à la RAM
         [DllImport("kernel32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GlobalMemoryStatusEx(ref MEMORY_INFO mi);
 
-        // Structure de l'info de la mémoire
+        //Structure de l'info de la mémoire
         [StructLayout(LayoutKind.Sequential)]
         public struct MEMORY_INFO
         {
-            public uint dwLength; // Taille structure
-            public uint dwMemoryLoad; // Utilisation mémoire
-            public ulong ullTotalPhys; // Mémoire physique totale
-            public ulong ullAvailPhys; // Mémoire physique dispo
+            public uint dwLength; //Taille structure
+            public uint dwMemoryLoad; //Utilisation mémoire
+            public ulong ullTotalPhys; //Mémoire physique totale
+            public ulong ullAvailPhys; //Mémoire physique dispo
             public ulong ullTotalPageFile;
             public ulong ullAvailPageFile;
-            public ulong ullTotalVirtual; // Taille mémoire virtuelle
-            public ulong ullAvailVirtual; // Mémoire virtuelle dispo
+            public ulong ullTotalVirtual; //Taille mémoire virtuelle
+            public ulong ullAvailVirtual; //Mémoire virtuelle dispo
             public ulong ullAvailExtendedVirtual;
         }
 
@@ -116,21 +163,21 @@ namespace Monitoring
             return mi;
         }
 
-        // Récupération mémoire physique totale dispo
+        //Récupération mémoire physique totale dispo
         public static ulong GetAvailPhys()
         {
             MEMORY_INFO mi = GetMemoryStatus();
             return mi.ullAvailPhys;
         }
 
-        // Récupération mémoire utilisée
+        //Récupération mémoire utilisée
         public static ulong GetUsedPhys()
         {
             MEMORY_INFO mi = GetMemoryStatus();
             return (mi.ullTotalPhys - mi.ullAvailPhys);
         }
 
-        // Récup la mémoire physique totale
+        //Récup la mémoire physique totale
         public static ulong GetTotalPhys()
         {
             MEMORY_INFO mi = GetMemoryStatus();

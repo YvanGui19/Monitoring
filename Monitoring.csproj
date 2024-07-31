@@ -15,7 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.3" />
     <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="OpenHardwareMonitorLib">
+      <HintPath>..\openhardwaremonitor-master\Bin\Debug\OpenHardwareMonitorLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
