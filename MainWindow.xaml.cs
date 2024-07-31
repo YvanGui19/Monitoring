@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Management;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
@@ -49,8 +50,11 @@ namespace Monitoring
             RefreshRamInfos();
             //MÀJ infos Température
             RefreshTempInfos();
+            //MÀJ infos Réseaux
+            RefreshNetworkInfos();
         }
 
+        //Liste des disques
         public void GetDrivesInfos()
         {
             DriveInfo[] allDrives = DriveInfo.GetDrives();
@@ -80,6 +84,25 @@ namespace Monitoring
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
         }
 
+        //Activité Réseaux
+        public void RefreshNetworkInfos()
+        {
+            if(!NetworkInterface.GetIsNetworkAvailable())
+                return;
+
+            NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach(NetworkInterface ni in interfaces)
+            {
+                //Envoyé
+                if(ni.GetIPv4Statistics().BytesSent > 0)
+                    netMont.Content = ni.GetIPv4Statistics().BytesSent / 1000 + " KB";
+                //Reçu
+                if (ni.GetIPv4Statistics().BytesReceived > 0)
+                    netDes.Content = ni.GetIPv4Statistics().BytesReceived / 1000 + " KB";
+            }
+        }
+
         //Actualisation des données de la température
         public void RefreshTempInfos()
         {
@@ -93,7 +116,6 @@ namespace Monitoring
                 if (instanceName.Contains("CPUZ_0"))
                 {
                     temperature = Convert.ToDouble(obj["CurrentTemperature"].ToString());
-                    // Conversion °F en °C
                     temperature = (temperature - 2732) / 10.0;
                 }
             }
@@ -101,7 +123,8 @@ namespace Monitoring
         }
 
 
-        /*public void RefreshTempInfos()
+        /*CODE DU COURS NON FONCTIONNEL
+        public void RefreshTempInfos()
         {
             Double temperature = 0;
             String instanceName = "";

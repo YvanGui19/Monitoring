@@ -52,7 +52,7 @@
         <Label Name="ramFree" Content="Libre : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Center" Margin="0,364,0,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
 
         <Label Content="TEMPÉRATURE" HorizontalAlignment="Center" Margin="0,399,0,0" VerticalAlignment="Top" Width="250" FontSize="25" FontWeight="Bold" Foreground="#FF37474F"/>
-        <Label Name="temp" Content="0°C" HorizontalAlignment="Center" Margin="0,438,0,0" VerticalAlignment="Top" Width="250" FontSize="35" FontWeight="Bold" Foreground="#FF37474F" HorizontalContentAlignment="Center"/>
+        <Label Name="temp" Content="00°C" HorizontalAlignment="Center" Margin="0,438,0,0" VerticalAlignment="Top" Width="250" FontSize="35" FontWeight="Bold" Foreground="#FF37474F" HorizontalContentAlignment="Center"/>
 
         <!-- Module Disques -->
         <Rectangle HorizontalAlignment="Right" Height="294" Margin="0,207,13,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#00000000" RenderTransformOrigin="0.5,0.5"/>
@@ -61,8 +61,8 @@
 
         <Label Content="RÉSEAU" HorizontalAlignment="Right" Margin="0,367,139,0" VerticalAlignment="Top" Width="124" FontSize="25" FontWeight="Bold" Foreground="#FF37474F"/>
         <Label Content="Données transférées :" Foreground="#FF37474F" HorizontalAlignment="Right" Margin="0,400,13,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
-        <Label Name="netMont" Content="0" HorizontalAlignment="Right" Margin="0,421,51,0" VerticalAlignment="Top" FontSize="25" Width="97" Height="38" HorizontalContentAlignment="Right"/>
-        <Label Name="netDes" Content="0" HorizontalAlignment="Right" Margin="0,458,51,0" VerticalAlignment="Top" FontSize="25" Width="97" HorizontalContentAlignment="Right" Height="38"/>
+        <Label Name="netMont" Content="0" HorizontalAlignment="Right" Margin="0,421,51,0" VerticalAlignment="Top" FontSize="25" Width="205" Height="38" HorizontalContentAlignment="Right"/>
+        <Label Name="netDes" Content="0" HorizontalAlignment="Right" Margin="0,458,51,0" VerticalAlignment="Top" FontSize="25" Width="205" HorizontalContentAlignment="Right" Height="38"/>
         <Image HorizontalAlignment="Right" Height="28" Margin="0,426,20,0" VerticalAlignment="Top" Width="29
                " Source="/arrow.png"/>
         <Image HorizontalAlignment="Right" Height="29" Margin="0,465,19,0" VerticalAlignment="Top" Width="29" Source="/arrow.png" RenderTransformOrigin="0.5,0.5">
