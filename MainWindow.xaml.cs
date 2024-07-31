@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Diagnostics;
+using System.IO;
 using System.Management;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -29,6 +30,9 @@ namespace Monitoring
             //Récupération des infos du PC
             GetAllSystemInfos();
 
+            //Récupération infos disques
+            GetDrivesInfos();
+
             //Timer màj des infos
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(0.75);
@@ -47,6 +51,34 @@ namespace Monitoring
             RefreshTempInfos();
         }
 
+        public void GetDrivesInfos()
+        {
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+            List<Disque> disques = new List<Disque>();
+
+            foreach(DriveInfo info in allDrives)
+            {
+                if (info.IsReady == true)
+                {
+                    Console.WriteLine("Disque " + info.Name + " prêt !");
+                }
+                disques.Add(new Disque(info.Name, info.DriveFormat, FormatBytes(info.TotalSize), FormatBytes(info.AvailableFreeSpace)));
+            }
+
+            listeDisques.ItemsSource = disques;
+        }
+
+        private static string FormatBytes(long bytes)
+        {
+            string[] Suffix = { "B", "KB", "MB", "GB", "TB" };
+            int i;
+            double dblSByte = bytes;
+            for (i = 0; i < Suffix.Length && bytes >= 1024; i++, bytes /= 1024)
+            {
+                dblSByte = bytes / 1024.0;
+            }
+            return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
+        }
 
         //Actualisation des données de la température
         public void RefreshTempInfos()
@@ -253,4 +285,27 @@ namespace Monitoring
         }
 
     }
+
+    public class Disque
+    {
+        private string name;
+        private string format;
+        private string totalSpace;
+        private string freeSpace;
+
+        public Disque(string n, string f, string t, string fs)
+        {
+            name = n;
+            format = f;
+            totalSpace = t;
+            freeSpace = fs;
+        }
+
+        public override string ToString()
+        {
+            return name + " (" + format + ") " + freeSpace + " libres /" + totalSpace;
+        }
+
+    }
+
 }

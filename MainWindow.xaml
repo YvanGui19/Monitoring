@@ -57,7 +57,7 @@
         <!-- Module Disques -->
         <Rectangle HorizontalAlignment="Right" Height="294" Margin="0,207,13,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#00000000" RenderTransformOrigin="0.5,0.5"/>
         <Label Content="DISQUES" HorizontalAlignment="Right" Margin="0,207,13,0" VerticalAlignment="Top" Width="250" FontSize="25" FontWeight="Bold" Foreground="#FF37474F"/>
-        <ListBox Name="listeDisques" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,244,20,214" BorderBrush="#FF78909C" Background="#FFCFD8DD" HorizontalAlignment="Right" Width="236"/>
+        <ListBox Name="listeDisques" Margin="0,244,20,214" BorderBrush="#FF78909C" Background="#FFCFD8DD" HorizontalAlignment="Right" Width="236"/>
 
         <Label Content="RÉSEAU" HorizontalAlignment="Right" Margin="0,367,139,0" VerticalAlignment="Top" Width="124" FontSize="25" FontWeight="Bold" Foreground="#FF37474F"/>
         <Label Content="Données transférées :" Foreground="#FF37474F" HorizontalAlignment="Right" Margin="0,400,13,0" VerticalAlignment="Top" Height="30" Width="250" FontSize="15"/>
