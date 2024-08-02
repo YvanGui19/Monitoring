@@ -4,17 +4,10 @@ using System.IO;
 using System.Management;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Monitoring
@@ -35,23 +28,25 @@ namespace Monitoring
             GetDrivesInfos();
 
             //Timer màj des infos
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(0.75);
-            timer.Tick += timer_Tick;
+            DispatcherTimer timer = new()
+            {
+                Interval = TimeSpan.FromSeconds(0.75)
+            };
+            timer.Tick += Timer_Tick;
             timer.Start();
         }
 
         //Fonction timer
-        void timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
             //MÀJ infos CPU
             cpu.Content = RefreshCpuInfos();
             //MÀJ infos RAM
             RefreshRamInfos();
             //MÀJ infos Température
-            RefreshTempInfos();
+            RefreshTempInfos(this);
             //MÀJ infos Réseaux
-            RefreshNetworkInfos();
+            RefreshNetworkInfos(this);
         }
 
         //Liste des disques
@@ -60,7 +55,7 @@ namespace Monitoring
             DriveInfo[] allDrives = DriveInfo.GetDrives();
             List<Disque> disques = new List<Disque>();
 
-            foreach(DriveInfo info in allDrives)
+            foreach (DriveInfo info in allDrives)
             {
                 if (info.IsReady == true)
                 {
@@ -74,7 +69,7 @@ namespace Monitoring
 
         private static string FormatBytes(long bytes)
         {
-            string[] Suffix = { "B", "KB", "MB", "GB", "TB" };
+            string[] Suffix = ["B", "KB", "MB", "GB", "TB"];
             int i;
             double dblSByte = bytes;
             for (i = 0; i < Suffix.Length && bytes >= 1024; i++, bytes /= 1024)
@@ -85,26 +80,26 @@ namespace Monitoring
         }
 
         //Activité Réseaux
-        public void RefreshNetworkInfos()
+        public static void RefreshNetworkInfos(MainWindow mainWindow)
         {
-            if(!NetworkInterface.GetIsNetworkAvailable())
+            if (!NetworkInterface.GetIsNetworkAvailable())
                 return;
 
             NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
 
-            foreach(NetworkInterface ni in interfaces)
+            foreach (NetworkInterface ni in interfaces)
             {
                 //Envoyé
-                if(ni.GetIPv4Statistics().BytesSent > 0)
-                    netMont.Content = ni.GetIPv4Statistics().BytesSent / 1000 + " KB";
+                if (ni.GetIPv4Statistics().BytesSent > 0)
+                    mainWindow.netMont.Content = ni.GetIPv4Statistics().BytesSent / 1000 + " KB";
                 //Reçu
                 if (ni.GetIPv4Statistics().BytesReceived > 0)
-                    netDes.Content = ni.GetIPv4Statistics().BytesReceived / 1000 + " KB";
+                    mainWindow.netDes.Content = ni.GetIPv4Statistics().BytesReceived / 1000 + " KB";
             }
         }
 
         //Actualisation des données de la température
-        public void RefreshTempInfos()
+        public static void RefreshTempInfos(MainWindow mainWindow)
         {
             Double temperature = 0;
             String instanceName = "";
@@ -119,26 +114,9 @@ namespace Monitoring
                     temperature = (temperature - 2732) / 10.0;
                 }
             }
-            temp.Content = temperature + "°C";
+            mainWindow.temp.Content = temperature + "°C";
         }
 
-
-        /*CODE DU COURS NON FONCTIONNEL
-        public void RefreshTempInfos()
-        {
-            Double temperature = 0;
-            String instanceName = "";
-
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher(@"root\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
-            foreach (ManagementObject obj in searcher.Get())
-            {
-                temperature = Convert.ToDouble(obj["CurrentTemperature"].ToString());
-                //Convertion °F en °C
-                temperature = (temperature - 2732) / 10.0;
-                instanceName = obj["InstanceName"].ToString();
-            }
-            temp.Content = temperature + "°C";
-        }*/
 
         //Actualisation des données de la RAM
         public void RefreshRamInfos()
@@ -152,8 +130,6 @@ namespace Monitoring
             string[] memVal = FormatSize(GetUsedPhys()).Split(' ');
             barRam.Value = float.Parse(memVal[0]); ;
         }
-
-        //Actualisation des données du CPU
         public string RefreshCpuInfos()
         {
             PerformanceCounter cpuCounter = new PerformanceCounter();
@@ -165,16 +141,37 @@ namespace Monitoring
             System.Threading.Thread.Sleep(50);
             dynamic val = cpuCounter.NextValue(); //valeur réelle
 
-            //Rotation de l'aiguille
-            RotateTransform rotateTransform = new RotateTransform((val * 2.7f) -90);
-            imgAiguille.RenderTransform = rotateTransform;
+            // Créez une instance de RotateTransform
+            RotateTransform rotateTransform = imgAiguille.RenderTransform as RotateTransform;
+            if (rotateTransform == null)
+            {
+                rotateTransform = new RotateTransform();
+                imgAiguille.RenderTransform = rotateTransform;
+                imgAiguille.RenderTransformOrigin = new Point(0.729, 0.736);
+            }
 
+            double angle = (val * 2.7f) - 90;
+
+            // Créez une animation pour la propriété Angle de RotateTransform
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.From = rotateTransform.Angle;
+            animation.To = angle;
+            animation.Duration = new Duration(TimeSpan.FromMilliseconds(1000)); // Augmentez la durée
+            animation.AccelerationRatio = 0.5; // Accélération au début
+            animation.DecelerationRatio = 0.5; // Décélération plus lente
+
+            // Utilisez une fonction d'interpolation pour adoucir la transition
+            //animation.EasingFunction = new QuinticEase { EasingMode = EasingMode.EaseInOut };
+
+            // Appliquez l'animation à la propriété Angle de RotateTransform
+            rotateTransform.BeginAnimation(RotateTransform.AngleProperty, animation);
+
+            //Valeur en %
             decimal roundVal = Convert.ToDecimal(val);
             roundVal = Math.Round(roundVal, 2);
-
             return roundVal + " %";
-
         }
+
 
         //Travailler avec la mémoire (RAM)
         #region Fonctions spécifiques à la RAM
@@ -240,6 +237,9 @@ namespace Monitoring
         }
         #endregion
 
+        /// <summary>
+        /// Informations système
+        /// </summary>
         public void GetAllSystemInfos()
         {
             SystemInfo si = new SystemInfo();
@@ -248,18 +248,11 @@ namespace Monitoring
             procName.Content = si.GetCpuInfos();
             gpuName.Content = si.GetGpuInfos();
         }
-
-        private void infoMsg_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var psi = new System.Diagnostics.ProcessStartInfo
-            {
-                FileName = "https://github.com/YvanGui19",
-                UseShellExecute = true
-            };
-            System.Diagnostics.Process.Start(psi);
-        }
     }
 
+    /// <summary>
+    ///Informations générales du système 
+    /// </summary>
     public class SystemInfo
     {
         //Récupération infos OS
@@ -288,7 +281,7 @@ namespace Monitoring
 
             if (processor_name != null)
             {
-                return processor_name.GetValue("ProcessorNameString").ToString();
+                return "CPU : " + processor_name.GetValue("ProcessorNameString").ToString();
             }
 
             return "";
@@ -301,7 +294,7 @@ namespace Monitoring
             {
                 foreach (ManagementObject obj in searcher.Get())
                 {
-                    return obj["Name"].ToString();
+                    return "GPU : " + obj["Name"].ToString();
                 }
             }
             return "";
@@ -309,6 +302,9 @@ namespace Monitoring
 
     }
 
+    /// <summary>
+    ///Informations des disques
+    /// </summary>
     public class Disque
     {
         private string name;
