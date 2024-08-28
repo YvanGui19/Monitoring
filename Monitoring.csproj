@@ -50,4 +50,9 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MVVM\Model\" />
+    <Folder Include="Img\" />
+  </ItemGroup>
+
 </Project>
