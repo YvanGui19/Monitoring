@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="Moniteur d'activité" Height="580" Width="815" ResizeMode="NoResize" Icon="/Compteur.png">
     <Grid Background="#7FFFFFFF">
-        <!-- Infos Système  #7FCFD8DD-->
-        <Rectangle HorizontalAlignment="Center" Height="120" Margin="0,15,0,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="775" Fill="#7FCFD8DD" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+        <!-- Références Système -->
+        <Rectangle HorizontalAlignment="Center" Height="120" Margin="0,15,0,0" VerticalAlignment="Top" Width="775" Fill="White" RadiusX="15" RadiusY="15" StrokeThickness="0">
+            <Rectangle.BitmapEffect>
+                <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
+            </Rectangle.BitmapEffect>
+        </Rectangle>
         <Label Content="Références système :" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="26,15,0,0" VerticalAlignment="Top" Height="46" Width="388" FontSize="25" FontWeight="Bold"/>
 
         <Label Name="osName" Content="OS" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" Height="30" Width="297" FontSize="15"/>
@@ -17,8 +21,11 @@
         <Label Name="gpuName" Content="GPU" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="322,98,0,0" VerticalAlignment="Top" Height="30" Width="473" FontSize="15"/>
 
         <!-- Module CPU -->
-        <Rectangle HorizontalAlignment="Left" Height="294" Margin="13,177,0,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#7FCFD8DD" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
-
+        <Rectangle HorizontalAlignment="Left" Height="294" Margin="13,177,0,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0">
+            <Rectangle.BitmapEffect>
+                <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
+            </Rectangle.BitmapEffect>
+        </Rectangle>
         <Image HorizontalAlignment="Left" Height="219" Margin="28,228,0,0" VerticalAlignment="Top" Width="220" Source="/Compteur.png"/>
         <Image Name="imgAiguille" HorizontalAlignment="Left" Height="65" Margin="90,287,0,0" VerticalAlignment="Top" Width="65" Source="/Aiguille.png" RenderTransformOrigin="0.729,0.736">
             <Image.RenderTransform>
@@ -49,17 +56,29 @@
         <Label Name="ramFree" Content="Libre : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="290,324,0,0" VerticalAlignment="Top" Height="30" Width="207" FontSize="15"/>
 
         <!-- Module Temp -->
-        <Rectangle HorizontalAlignment="Center" Height="101" Margin="0,370,0,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#7FCFD8DD" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Center" Height="101" Margin="0,370,0,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0">
+        <Rectangle.BitmapEffect>
+            <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
+        </Rectangle.BitmapEffect>
+        </Rectangle>
         <Label Content="TEMPÉRATURE" HorizontalAlignment="Left" Margin="290,370,0,0" VerticalAlignment="Top" Width="198" FontSize="20" FontWeight="Bold" Foreground="#FF37474F"/>
         <Label Name="temp" Content="00°C" HorizontalAlignment="Center" Margin="0,408,0,0" VerticalAlignment="Top" Width="250" FontSize="25" FontWeight="Bold" Foreground="#FF37474F" HorizontalContentAlignment="Center"/>
 
         <!-- Module Disques -->
-        <Rectangle HorizontalAlignment="Right" Height="137" Margin="0,177,13,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#7FCFD8DD" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Right" Height="137" Margin="0,177,13,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0">
+        <Rectangle.BitmapEffect>
+            <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
+        </Rectangle.BitmapEffect>
+        </Rectangle>
         <Label Content="DISQUES" HorizontalAlignment="Right" Margin="0,178,131,0" VerticalAlignment="Top" Width="124" FontSize="20" FontWeight="Bold" Foreground="#FF37474F"/>
         <ListBox Name="listeDisques" Margin="0,216,27,261" BorderBrush="#FF78909C" Background="#FFCFD8DD" Width="222" HorizontalAlignment="Right"/>
 
         <!-- Module Réseaux -->
-        <Rectangle HorizontalAlignment="Right" Height="147" Margin="0,324,12,0" Stroke="#FFCFD8DD" VerticalAlignment="Top" Width="250" Fill="#7FCFD8DD" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+        <Rectangle HorizontalAlignment="Right" Height="147" Margin="0,324,12,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0">
+        <Rectangle.BitmapEffect>
+            <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
+        </Rectangle.BitmapEffect>
+        </Rectangle>
         <Label Content="RÉSEAU" HorizontalAlignment="Right" Margin="0,325,131,0" VerticalAlignment="Top" Width="124" FontSize="20" FontWeight="Bold" Foreground="#FF37474F"/>
         <Label Content="Données transférées :" Foreground="#FF37474F" HorizontalAlignment="Right" Margin="0,362,90,0" VerticalAlignment="Top" Height="30" Width="165" FontSize="15"/>
         <Label Name="netMont" Content="0" HorizontalAlignment="Right" Margin="0,388,51,0" VerticalAlignment="Top" FontSize="15" Width="205" Height="32" HorizontalContentAlignment="Right"/>
