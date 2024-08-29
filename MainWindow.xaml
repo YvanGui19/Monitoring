@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:Monitoring.MVVM.ViewModel"
         mc:Ignorable="d"
         Height="450" Width="800" 
-        Icon="/Compteur.png" 
+        Icon="/Img/Compteur.png" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="none"
         ResizeMode="NoResize"
@@ -30,7 +30,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="PortFolio"
+            <TextBlock Text="Démo"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"

@@ -4,93 +4,65 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Monitoring.MVVM.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Grid Background="White">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="63*"/>
-                <ColumnDefinition Width="752*"/>
-            </Grid.ColumnDefinitions>
-            
-            <!-- Références Système -->
-            <Rectangle HorizontalAlignment="Left" Height="120" Margin="16,15,0,0" VerticalAlignment="Top" Width="775" Fill="White" RadiusX="15" RadiusY="15" StrokeThickness="0" Grid.ColumnSpan="2">
-                <Rectangle.BitmapEffect>
-                    <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
-                </Rectangle.BitmapEffect>
-            </Rectangle>
-            <Label Content="Références système :" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="26,15,0,0" VerticalAlignment="Top" Height="46" Width="388" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2"/>
+             mc:Ignorable="d" d:DesignWidth="660" Height="350"
+             Background="Transparent">
 
-            <Label Name="osName" Content="OS" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" Height="30" Width="297" FontSize="15" Grid.ColumnSpan="2"/>
-            <Label Name="osArch" Content="OS" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="20,96,0,0" VerticalAlignment="Top" Height="30" Width="297" FontSize="15" Grid.ColumnSpan="2"/>
-            <Label Name="procName" Content="CPU" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="259,62,0,0" VerticalAlignment="Top" Height="30" Width="466" FontSize="15" Grid.Column="1"/>
-            <Label Name="gpuName" Content="GPU" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="259,98,0,0" VerticalAlignment="Top" Height="30" Width="466" FontSize="15" Grid.Column="1"/>
+    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid>
+            <!-- Références Système -->
+            <Rectangle HorizontalAlignment="Center" Height="120" Margin="0,1,0,0" VerticalAlignment="Top" Width="652" Fill="#524D74" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+            <Label Content="Références système :" Foreground="white" HorizontalAlignment="Left" Margin="9,7,0,0" VerticalAlignment="Top" Height="37" Width="213" FontSize="20" FontWeight="Bold"/>
+
+            <Label x:Name="osName" Content="OS" Foreground="white" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="13"/>
+            <Label x:Name="osArch" Content="OS" Foreground="white" HorizontalAlignment="Left" Margin="24,82,0,0" VerticalAlignment="Top" Height="30" Width="234" FontSize="13"/>
+            <Label x:Name="procName" Content="CPU" Foreground="white" HorizontalAlignment="Left" Margin="263,48,0,0" VerticalAlignment="Top" Height="30" Width="409" FontSize="13"/>
+            <Label x:Name="gpuName" Content="GPU" Foreground="white" HorizontalAlignment="Left" Margin="263,84,0,0" VerticalAlignment="Top" Height="30" Width="409" FontSize="13"/>
 
             <!-- Module CPU -->
-            <Rectangle HorizontalAlignment="Left" Height="294" Margin="13,177,0,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0" Grid.ColumnSpan="2">
-                <Rectangle.BitmapEffect>
-                    <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
-                </Rectangle.BitmapEffect>
-            </Rectangle>
-            <Image HorizontalAlignment="Left" Height="219" Margin="28,228,0,0" VerticalAlignment="Top" Width="220" Source="/Compteur.png" Grid.ColumnSpan="2"/>
-            <Image Name="imgAiguille" HorizontalAlignment="Left" Height="65" Margin="27,287,0,0" VerticalAlignment="Top" Width="65" Source="/Aiguille.png" RenderTransformOrigin="0.729,0.736" Grid.Column="1">
+            <Rectangle HorizontalAlignment="Left" Height="221" Margin="4,127,0,0" VerticalAlignment="Top" Width="215" Fill="#524D74" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+            <Image HorizontalAlignment="Left" Height="183" Margin="18,160,0,0" VerticalAlignment="Top" Width="184" Source="/Img/Compteur.png"/>
+            <Image x:Name="imgAiguille" HorizontalAlignment="Left" Height="50" Margin="71,210,0,0" VerticalAlignment="Top" Width="50" Source="/Img/Aiguille.png" RenderTransformOrigin="0.729,0.736">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="269.484"/>
+                        <RotateTransform Angle="268.835"/>
                         <TranslateTransform X="0.42" Y="0.7"/>
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
 
-            <Label Content="CPU" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="21,178,0,0" VerticalAlignment="Top" Height="46" Width="61" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2"/>
-            <Label Name="cpu" Content="00,00%" HorizontalAlignment="Left" Margin="28,382,0,0" VerticalAlignment="Top" Width="232" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFCFD8DD" Grid.ColumnSpan="2"/>
+            <Label Content="CPU" Foreground="white" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Height="46" Width="62" FontSize="18" FontWeight="Bold"/>
+            <Label x:Name="cpu" Content="00,00%" HorizontalAlignment="Left" Margin="37,280,0,0" VerticalAlignment="Top" Width="152" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#FFCFD8DD" Height="39"/>
 
             <!-- Module RAM -->
-            <Rectangle HorizontalAlignment="Left" Height="182" Margin="213,177,0,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0" Grid.Column="1">
-                <Rectangle.BitmapEffect>
-                    <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
-                </Rectangle.BitmapEffect>
-            </Rectangle>
-            <Label Name="ram" Content="RAM" HorizontalAlignment="Left" Margin="223,178,0,0" VerticalAlignment="Top" Width="69" FontSize="20" FontWeight="Bold" Foreground="#FF37474F" Grid.Column="1"/>
-            <Label Content="Utilisation de la mémoire :" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="223,216,0,0" VerticalAlignment="Top" Height="30" Width="194" FontSize="15" Grid.Column="1"/>
-            <ProgressBar Name="barRam" HorizontalAlignment="Left" Height="12" VerticalAlignment="Top" Width="223" Background="#FFCFD8DD" BorderBrush="#FF78909C" Foreground="#FF37474F" Value="50" FontSize="25" Margin="229,246,0,0" Grid.Column="1"/>
+            <Rectangle HorizontalAlignment="Center" Height="153" Margin="0,127,0,0" VerticalAlignment="Top" Width="208" Fill="#524D74" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+            <Label x:Name="ram" Content="RAM" HorizontalAlignment="Left" Margin="234,127,0,0" VerticalAlignment="Top" Width="57" FontSize="18" FontWeight="Bold" Foreground="white" Height="37"/>
+            <Label Content="Utilisation de la mémoire :" Foreground="white" HorizontalAlignment="Left" Margin="235,150,0,0" VerticalAlignment="Top" Height="30" Width="196" FontSize="13"/>
+            <ProgressBar x:Name="barRam" HorizontalAlignment="Center" Height="12" VerticalAlignment="Top" Width="184" Background="#FFCFD8DD" BorderBrush="#FF78909C" Foreground="#FF37474F" Value="50" FontSize="25" Margin="0,178,0,0"/>
 
-            <Label Name="ramTotal" Content="Total : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="229" FontSize="15" Margin="223,263,0,0" Grid.Column="1"/>
-            <Label Name="ramUsed" Content="Utilisé : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="223,293,0,0" VerticalAlignment="Top" Height="30" Width="207" FontSize="15" Grid.Column="1"/>
-            <Label Name="ramFree" Content="Libre : 00,00 GB" Foreground="#FF37474F" HorizontalAlignment="Left" Margin="223,324,0,0" VerticalAlignment="Top" Height="30" Width="207" FontSize="15" Grid.Column="1"/>
+            <Label x:Name="ramTotal" Content="Total : 00,00 GB" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Width="190" FontSize="13" Margin="0,196,0,0"/>
+            <Label x:Name="ramUsed" Content="Utilisé : 00,00 GB" Foreground="white" HorizontalAlignment="Left" Margin="235,222,0,0" VerticalAlignment="Top" Height="30" Width="172" FontSize="13"/>
+            <Label x:Name="ramFree" Content="Libre : 00,00 GB" Foreground="white" HorizontalAlignment="Left" Margin="235,248,0,0" VerticalAlignment="Top" Height="30" Width="172" FontSize="13"/>
 
             <!-- Module Temp -->
-            <Rectangle HorizontalAlignment="Left" Height="101" Margin="215,370,0,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0" Grid.Column="1">
-                <Rectangle.BitmapEffect>
-                    <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
-                </Rectangle.BitmapEffect>
-            </Rectangle>
-            <Label Content="TEMPÉRATURE" HorizontalAlignment="Left" Margin="223,370,0,0" VerticalAlignment="Top" Width="198" FontSize="20" FontWeight="Bold" Foreground="#FF37474F" Grid.Column="1"/>
-            <Label Name="temp" Content="00°C" HorizontalAlignment="Left" Margin="215,408,0,0" VerticalAlignment="Top" Width="250" FontSize="25" FontWeight="Bold" Foreground="#FF37474F" HorizontalContentAlignment="Center" Grid.Column="1"/>
+            <Rectangle HorizontalAlignment="Center" Height="61" Margin="0,287,0,0" VerticalAlignment="Top" Width="209" Fill="#524D74" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+            <Label Content="Température" HorizontalAlignment="Center" Margin="0,283,0,0" VerticalAlignment="Top" Width="198" FontSize="18" FontWeight="Bold" Foreground="white" Height="37"/>
+            <Label x:Name="temp" Content="00°C" HorizontalAlignment="Center" Margin="0,311,0,0" VerticalAlignment="Top" Width="190" FontSize="18" FontWeight="Bold" Foreground="white" HorizontalContentAlignment="Center" Height="43"/>
 
             <!-- Module Disques -->
-            <Rectangle HorizontalAlignment="Right" Height="137" Margin="0,177,13,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0" Grid.Column="1">
-                <Rectangle.BitmapEffect>
-                    <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
-                </Rectangle.BitmapEffect>
-            </Rectangle>
-            <Label Content="DISQUES" HorizontalAlignment="Right" Margin="0,178,131,0" VerticalAlignment="Top" Width="124" FontSize="20" FontWeight="Bold" Foreground="#FF37474F" Grid.Column="1"/>
-            <ListBox Name="listeDisques" Margin="0,216,27,261" BorderBrush="#FF78909C" Background="#FFCFD8DD" Width="222" HorizontalAlignment="Right" Grid.Column="1"/>
+            <Rectangle HorizontalAlignment="Left" Height="106" Margin="441,127,0,0" VerticalAlignment="Top" Width="217" Fill="#524D74" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+            <Label Content="Disques" HorizontalAlignment="Left" Margin="447,127,0,0" VerticalAlignment="Top" Width="109" FontSize="18" FontWeight="Bold" Foreground="white" Height="37"/>
+            <ListBox x:Name="listeDisques" Margin="454,160,0,0" BorderBrush="#FF78909C" Background="#FFCFD8DD" Width="192" HorizontalAlignment="Left" VerticalAlignment="Top" Height="62"/>
 
             <!-- Module Réseaux -->
-            <Rectangle HorizontalAlignment="Right" Height="147" Margin="0,324,12,0" VerticalAlignment="Top" Width="250" Fill="White" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0" Grid.Column="1">
-                <Rectangle.BitmapEffect>
-                    <DropShadowBitmapEffect Color="LightGray" Direction="-45" ShadowDepth="6" Softness=".5" />
-                </Rectangle.BitmapEffect>
-            </Rectangle>
-            <Label Content="RÉSEAU" HorizontalAlignment="Right" Margin="0,325,131,0" VerticalAlignment="Top" Width="124" FontSize="20" FontWeight="Bold" Foreground="#FF37474F" Grid.Column="1"/>
-            <Label Content="Données transférées :" Foreground="#FF37474F" HorizontalAlignment="Right" Margin="0,362,90,0" VerticalAlignment="Top" Height="30" Width="165" FontSize="15" Grid.Column="1"/>
-            <Label Name="netMont" Content="0" HorizontalAlignment="Right" Margin="0,388,51,0" VerticalAlignment="Top" FontSize="15" Width="205" Height="32" HorizontalContentAlignment="Right" Grid.Column="1"/>
-            <Label Name="netDes" Content="0" HorizontalAlignment="Right" Margin="0,427,51,0" VerticalAlignment="Top" FontSize="15" Width="205" HorizontalContentAlignment="Right" Height="32" Grid.Column="1"/>
-            <Image HorizontalAlignment="Right" Height="25" Margin="0,391,20,0" VerticalAlignment="Top" Width="25" Source="/arrow.png" Grid.Column="1"/>
-            <Image HorizontalAlignment="Right" Height="25" Margin="0,432,20,0" VerticalAlignment="Top" Width="25" Source="/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+            <Rectangle HorizontalAlignment="Left" Height="108" Margin="440,240,0,0" VerticalAlignment="Top" Width="217" Fill="#524D74" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
+            <Label Content="Réseau" HorizontalAlignment="Left" Margin="445,240,0,0" VerticalAlignment="Top" Width="124" FontSize="18" FontWeight="Bold" Foreground="white" Height="37"/>
+            <Label Content="Données transférées :" Foreground="white" HorizontalAlignment="Left" Margin="446,263,0,0" VerticalAlignment="Top" Height="30" Width="165" FontSize="13"/>
+            <Label x:Name="netMont" Content="0" HorizontalAlignment="Left" Margin="445,284,0,0" VerticalAlignment="Top" FontSize="13" Foreground="white" Width="176" Height="32" HorizontalContentAlignment="Right"/>
+            <Label x:Name="netDes" Content="0" HorizontalAlignment="Left" Margin="449,313,0,0" VerticalAlignment="Top" FontSize="13" Foreground="white" Width="172" Height="32" HorizontalContentAlignment="Right"/>
+            <Image HorizontalAlignment="Left" Height="25" Margin="627,285,0,0" VerticalAlignment="Top" Width="25" Source="/Img/arrow.png"/>
+            <Image HorizontalAlignment="Left" Height="25" Margin="627,317,0,0" VerticalAlignment="Top" Width="25" Source="/Img/arrow.png" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -100,14 +72,6 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-
-            <!-- Footer -->
-            <Rectangle HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="815" Margin="0,517,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Copyright © 2024" HorizontalAlignment="Left" VerticalAlignment="Top" Width="815" Height="36" FontSize="13" Foreground="#FF8A8888" HorizontalContentAlignment="Center" Margin="0,516,0,0" Grid.ColumnSpan="2"/>
-
-            <ContentControl Grid.Row="1"
-                     Grid.Column="1"
-                     Margin="10"/>
 
         </Grid>
     </StackPanel>
