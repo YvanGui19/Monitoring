@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Net;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
@@ -9,12 +10,22 @@ namespace Monitoring.MVVM.View
     /// </summary>
     public partial class WeatherView : UserControl
     {
+        public string baseApi = "https://api.openweathermap.org/data/2.5/weather?q=";
         public string city = "";
+        public string JsonString;
         public WeatherView()
         {
             InitializeComponent();
             SetHeaderImg();
             SetDay();
+        }
+
+        public void GetApiResponse()
+        {
+            using (WebClient wc = new())
+            {
+
+            }
         }
 
         //La Date
