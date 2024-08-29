@@ -13,6 +13,14 @@
     <None Remove="Aiguille.png" />
     <None Remove="arrow.png" />
     <None Remove="Compteur.png" />
+    <None Remove="Img\Loupe_A9.png" />
+    <None Remove="Img\Loupe_noire.png" />
+    <None Remove="Img\meteo.png" />
+    <None Remove="Img\meteo2.png" />
+    <None Remove="Img\night.jpg" />
+    <None Remove="Img\rain.jpg" />
+    <None Remove="Img\Rond_loupe.png" />
+    <None Remove="Img\soleil.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +54,30 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Img\Compteur.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\Loupe_A9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\Loupe_noire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\meteo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\meteo2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\night.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\rain.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\Rond_loupe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Img\soleil.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

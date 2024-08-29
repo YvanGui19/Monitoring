@@ -57,7 +57,8 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding WeatherViewCommand}"/>
             </StackPanel>
 
             <ContentControl Grid.Row="1"

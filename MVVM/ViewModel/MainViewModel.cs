@@ -8,9 +8,11 @@ namespace Monitoring.MVVM.ViewModel
     {
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand InfoViewCommand { get; set; }
+        public RelayCommand WeatherViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
         public InfoViewModel InfoVM { get; set; }
+        public WeatherViewModel WeatherVM { get; set; }
 
         private object _currentView;
 
@@ -28,6 +30,7 @@ namespace Monitoring.MVVM.ViewModel
         {
            HomeVM = new HomeViewModel();
            InfoVM = new InfoViewModel();
+           WeatherVM = new WeatherViewModel();
            CurrentView = HomeVM;
 
             HomeViewCommand = new RelayCommand(o =>
@@ -38,6 +41,11 @@ namespace Monitoring.MVVM.ViewModel
             InfoViewCommand = new RelayCommand(o =>
             {
                 CurrentView = InfoVM;
+            });            
+            
+            WeatherViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = WeatherVM;
             });
         }
     }

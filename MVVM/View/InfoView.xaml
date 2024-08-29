@@ -33,7 +33,7 @@
             </Image>
 
             <Label Content="CPU" Foreground="white" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Height="46" Width="62" FontSize="18" FontWeight="Bold"/>
-            <Label x:Name="cpu" Content="00,00%" HorizontalAlignment="Left" Margin="37,280,0,0" VerticalAlignment="Top" Width="152" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#FFCFD8DD" Height="39"/>
+            <Label x:Name="cpu" Content="00,00%" HorizontalAlignment="Left" Margin="37,282,0,0" VerticalAlignment="Top" Width="152" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#FFCFD8DD" Height="39"/>
 
             <!-- Module RAM -->
             <Rectangle HorizontalAlignment="Center" Height="153" Margin="0,127,0,0" VerticalAlignment="Top" Width="208" Fill="#524D74" RenderTransformOrigin="0.5,0.5" RadiusX="15" RadiusY="15" StrokeThickness="0"/>
