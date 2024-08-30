@@ -24,7 +24,8 @@
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
                      Margin="358,0,0,0"
-                     Style="{StaticResource ModernTextBox}"/>
+                     Style="{StaticResource ModernTextBox}" FontSize="14"/>
+
                 <Button Style="{StaticResource SearchButton}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
@@ -40,21 +41,21 @@
             </Grid>
         </StackPanel>
         <Canvas>
-            <Image Name="headerImg" Height="279" Source="/Img/night.jpg" Stretch="UniformToFill" Width="660"/>
+            <Image Name="headerImg" Height="279" Source="/Img/sun.jpg" Width="660" Stretch="Fill"/>
             <!--Nom de la ville-->
-            <Label Name="cityName" Content="À définir" Foreground="White" FontSize="50" FontFamily="/Fonts/#Poppins" Canvas.Left="15" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="623">
+            <Label Name="cityName" Content="Paris" Foreground="White" FontSize="50" FontFamily="/Fonts/#Poppins" Canvas.Left="15" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="623">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="10" Color="#FF232323"/>
                 </Label.Effect>
             </Label>
             <!--Température-->
-            <Label Content="15°C" Foreground="White" FontSize="70" FontFamily="/Fonts/#Poppins" Canvas.Left="450" Canvas.Top="43" HorizontalAlignment="Center" VerticalAlignment="Top" Width="188" HorizontalContentAlignment="Right">
+            <Label Name="temperature" Content="15°C" Foreground="White" FontSize="70" FontFamily="/Fonts/#Poppins" Canvas.Left="450" Canvas.Top="57" HorizontalAlignment="Center" VerticalAlignment="Top" Width="188" HorizontalContentAlignment="Right">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="10" Color="#FF232323"/>
                 </Label.Effect>
             </Label>
             <!--Vent-->
-            <Label Content="5 km/h" Foreground="White" FontSize="30" FontFamily="/Fonts/#Poppins" Canvas.Left="450" Canvas.Top="135" HorizontalAlignment="Center" VerticalAlignment="Top" Width="188" HorizontalContentAlignment="Right">
+            <Label Name="windSpeed" Content="5 km/h" Foreground="White" FontSize="30" FontFamily="/Fonts/#Poppins" Canvas.Left="450" Canvas.Top="144" HorizontalAlignment="Center" VerticalAlignment="Top" Width="188" HorizontalContentAlignment="Right">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="10" Color="#FF232323"/>
                 </Label.Effect>
@@ -66,7 +67,7 @@
                 </Label.Effect>
             </Label>
             <!--Desc-->
-            <Label Content="Nuageux" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Canvas.Left="18" Canvas.Top="80" HorizontalAlignment="Left" VerticalAlignment="Center" Width="291">
+            <Label Name="weatherDesc" Content="Nuageux" Foreground="White" FontSize="20" FontFamily="/Fonts/#Poppins" Canvas.Left="18" Canvas.Top="80" HorizontalAlignment="Left" VerticalAlignment="Center" Width="291">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="10" Color="#FF232323"/>
                 </Label.Effect>
